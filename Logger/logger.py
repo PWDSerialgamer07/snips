@@ -57,12 +57,3 @@ class Logger:
             log(f"[blue]{current_time}[/blue] [cyan][bold][DEBUG][/bold] {message}[/cyan]")
             # Write the log entry to the console
             self.parent.log_file.log(message, "DEBUG")
-
-
-# Usage
-logger = Logger()
-log_printer = logger.LogPrint(logger)
-log_printer.error("This is a test error message")
-log_printer.warn("This is a test warn message")
-log_printer.info("This is a test info message")
-log_printer.debug("This is a test debug message")
