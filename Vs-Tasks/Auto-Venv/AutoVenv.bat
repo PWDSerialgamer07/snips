@@ -35,9 +35,9 @@ if "!python_files_found!"=="false" (
     echo Python files found in the directory or subdirectories.
 )
 
-REM Check if a virtual environment already exists
+REM Check if a virtual environment already exists (only if it's called .venv)
 echo Checking for existing virtual environment...
-if exist "venv\Scripts\activate.bat" (
+if exist ".venv\Scripts\activate.bat" (
     echo Virtual environment already exists.
 ) else (
     echo Virtual environment not found. Creating one...
