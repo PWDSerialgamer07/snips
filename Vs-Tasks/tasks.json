@@ -1,0 +1,16 @@
+{
+	// See https://go.microsoft.com/fwlink/?LinkId=733558
+	// for the documentation about the tasks.json format
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Auto-Venv",
+			"type": "shell",
+			"command": "AutoVenv.bat ${workspaceFolder}", // Ideally should be the path to AutoVenv.bat, unless you put it in your PATH
+			"problemMatcher": "[]",
+			"runOptions": {
+				"runOn": "folderOpen" // Juste remove it if you don't like it
+			}
+		}
+	]
+}
