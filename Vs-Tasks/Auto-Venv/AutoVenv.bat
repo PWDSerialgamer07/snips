@@ -41,7 +41,7 @@ if exist "venv\Scripts\activate.bat" (
     echo Virtual environment already exists.
 ) else (
     echo Virtual environment not found. Creating one...
-    python -m venv venv
+    python -m venv .venv
     Rem Should be python3, but my python install is very messed up soooo...
     echo Virtual environment created.
 )
