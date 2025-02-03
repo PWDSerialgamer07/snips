@@ -66,7 +66,7 @@ class Logger:
                 self.parent.log_directory, self.parent.log_file_name)
             self.file = open(self.log_file_path, "a+")
 
-        def log(self, message: str, log_type: str, tb: FrameSummary) -> None:
+        def log(self, message: str, log_type: str, tb: FrameSummary = None) -> None:
             """
             Writes the log entry to the file if the current log level allows it.
 
@@ -77,8 +77,12 @@ class Logger:
             if not self.parent.should_log(log_type):
                 return
             current_time = self.parent.get_current_time()
-            self.file.write(
-                f"{current_time} [{log_type}] {message} (File: {tb.filename}, Line: {tb.lineno})\n")
+            if tb:
+                self.file.write(
+                    f"{current_time} [{log_type}] {message} (File: {tb.filename}, Line: {tb.lineno})\n")
+            else:
+                self.file.write(
+                    f"{current_time} [{log_type}] {message}\n")
             self.file.flush()
 
         def close(self) -> None:
