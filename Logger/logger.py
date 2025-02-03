@@ -3,6 +3,8 @@ from rich import print as log
 from rich.console import Console
 import datetime
 import os
+import traceback
+from traceback import FrameSummary
 
 
 class Logger:
@@ -64,7 +66,7 @@ class Logger:
                 self.parent.log_directory, self.parent.log_file_name)
             self.file = open(self.log_file_path, "a+")
 
-        def log(self, message: str, log_type: str) -> None:
+        def log(self, message: str, log_type: str, tb: FrameSummary) -> None:
             """
             Writes the log entry to the file if the current log level allows it.
 
@@ -75,7 +77,8 @@ class Logger:
             if not self.parent.should_log(log_type):
                 return
             current_time = self.parent.get_current_time()
-            self.file.write(f"{current_time} [{log_type}] {message}\n")
+            self.file.write(
+                f"{current_time} [{log_type}] {message} (File: {tb.filename}, Line: {tb.lineno})\n")
             self.file.flush()
 
         def close(self) -> None:
@@ -110,8 +113,9 @@ class Logger:
             if not self.parent.should_log("ERROR"):
                 return
             current_time = self.parent.get_current_time()
-            log(f"[blue]{current_time}[/blue] [red][bold][ERROR][/bold] {message}[/red]")
-            self.parent.log_file.log(message, "ERROR")
+            tb = traceback.extract_stack()[-2]  # Get the caller's line info
+            log(f"[blue]{current_time}[/blue] [red][bold][ERROR][/bold] {message}(File:{tb.filename}, Line:{tb.lineno}[/red]")
+            self.parent.log_file.log(message, "ERROR", tb)
 
         def info(self, message: str) -> None:
             """
