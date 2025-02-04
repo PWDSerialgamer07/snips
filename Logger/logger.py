@@ -117,9 +117,9 @@ class Logger:
             if not self.parent.should_log("ERROR"):
                 return
             current_time = self.parent.get_current_time()
-            if exception:
+            if Exception:
                 # Extract the traceback from the exception and get the last frame (where the error happened)
-                tb = traceback.extract_tb(exception.__traceback__)[-1]
+                tb = traceback.extract_tb(Exception)
                 file_info = f"(File: {tb.filename}, Line: {tb.lineno}, Function: {tb.name})"
             else:
                 # If no exception is provided, use the caller's location (fallback)
@@ -176,7 +176,14 @@ logger = Logger(log_file_name="logs.txt", log_dir="my_logs", level="INFO")
 logger.log_print.debug("This is a debug message.")
 logger.log_print.info("This is an info message.")   # Will print
 logger.log_print.warn("This is a warning message.")  # Will print
-logger.log_print.error("This is an error message.")  # Will print
+# logger.log_print.error("This is an error message.")  # Will print
 
 # Close the log file manually when done
 logger.log_file.close()
+
+try:
+    P = 1/0
+except Exception as e:
+    k = traceback.extract_tb(e)
+    print(k)
+    logger.log_print.error("Error",e)
