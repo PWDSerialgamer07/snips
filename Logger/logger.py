@@ -124,7 +124,7 @@ class Logger:
                 tb = traceback.extract_tb(exc_tb)[-1]
                 file_info = f"(File: {tb.filename}, Line: {tb.lineno}, Function: {tb.name})"
             file_info = f"(File: {tb.filename}, Line: {tb.lineno})"
-            log(f"[blue]{current_time}[/blue] [red][bold][ERROR][/bold] {message}{file_info}[/red]")
+            log(f"[blue]{current_time}[/blue] [red][bold][ERROR][/bold] {message} {file_info}[/red]")
             self.parent.log_file.log(message, "ERROR", file_info)
 
         def info(self, message: str) -> None:
@@ -172,14 +172,9 @@ logger = Logger(log_file_name="logs.txt", log_dir="my_logs", level="INFO")
 
 # Won't print because level is INFO
 logger.log_print.debug("This is a debug message.")
-logger.log_print.info("This is an info message.")   # Will print
-logger.log_print.warn("This is a warning message.")  # Will print
-# logger.log_print.error("This is an error message.")  # Will print
+logger.log_print.info("This is an info message.")
+logger.log_print.warn("This is a warning message.")
+logger.log_print.error("This is an error message.")
 
 # Close the log file manually when done
-# logger.log_file.close()
-
-try:
-    P = 1/0
-except Exception as e:
-    logger.log_print.error("This is an error", e)
+logger.log_file.close()
