@@ -1,8 +1,0 @@
-2025-02-04|17:26:04 [INFO] This is an info message.
-2025-02-04|17:26:04 [WARN] This is a warning message.
-2025-02-04|17:27:04 [INFO] This is an info message.
-2025-02-04|17:27:04 [WARN] This is a warning message.
-2025-02-04|17:45:35 [INFO] This is an info message.
-2025-02-04|17:45:35 [WARN] This is a warning message.
-2025-02-04|17:45:57 [INFO] This is an info message.
-2025-02-04|17:45:57 [WARN] This is a warning message.
