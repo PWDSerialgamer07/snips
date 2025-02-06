@@ -108,7 +108,7 @@ class Logger:
             """
             self.parent = parent
 
-        def error(self, message: str, Excetion: Exception = None) -> None:
+        def error(self, message: str, Exception: Exception = None) -> None:
             """
             Logs an error message, prints it to the console, and writes it to the log file.
 
@@ -123,7 +123,8 @@ class Logger:
                 exc_type, exc_value, exc_tb = sys.exc_info()
                 tb = traceback.extract_tb(exc_tb)[-1]
                 file_info = f"(File: {tb.filename}, Line: {tb.lineno}, Function: {tb.name})"
-            file_info = f"(File: {tb.filename}, Line: {tb.lineno})"
+            else:
+                file_info = ""
             log(f"[blue]{current_time}[/blue] [red][bold][ERROR][/bold] {message} {file_info}[/red]")
             self.parent.log_file.log(message, "ERROR", file_info)
 
