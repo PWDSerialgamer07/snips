@@ -5,7 +5,6 @@ import datetime
 import os
 import traceback
 import sys
-from traceback import FrameSummary
 
 
 class Logger:
