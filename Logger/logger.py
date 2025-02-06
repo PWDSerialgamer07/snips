@@ -4,6 +4,7 @@ from rich.console import Console
 import datetime
 import os
 import traceback
+import sys
 from traceback import FrameSummary
 
 
@@ -119,13 +120,10 @@ class Logger:
             current_time = self.parent.get_current_time()
             if Exception:
                 # Extract the traceback from the exception and get the last frame (where the error happened)
-                tb = traceback.extract_tb(Exception)
+                exc_type, exc_value, exc_tb = sys.exc_info()
+                tb = traceback.extract_tb(exc_tb)[-1]
                 file_info = f"(File: {tb.filename}, Line: {tb.lineno}, Function: {tb.name})"
-            else:
-                # If no exception is provided, use the caller's location (fallback)
-                tb = traceback.extract_stack()[-2]
             file_info = f"(File: {tb.filename}, Line: {tb.lineno})"
-            tb = traceback.extract_stack()[-2]  # Get the caller's line info
             log(f"[blue]{current_time}[/blue] [red][bold][ERROR][/bold] {message}{file_info}[/red]")
             self.parent.log_file.log(message, "ERROR", file_info)
 
@@ -179,11 +177,9 @@ logger.log_print.warn("This is a warning message.")  # Will print
 # logger.log_print.error("This is an error message.")  # Will print
 
 # Close the log file manually when done
-logger.log_file.close()
+# logger.log_file.close()
 
 try:
     P = 1/0
 except Exception as e:
-    k = traceback.extract_tb(e)
-    print(k)
-    logger.log_print.error("Error",e)
+    logger.log_print.error("This is an error", e)
