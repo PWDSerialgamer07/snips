@@ -107,7 +107,7 @@ class Logger:
             """
             self.parent = parent
 
-        def error(self, message: str, Exception: Exception = None) -> None:
+        def error(self, message: str, error: Exception = None) -> None:
             """
             Logs an error message, prints it to the console, and writes it to the log file.
 
@@ -117,7 +117,7 @@ class Logger:
             if not self.parent.should_log("ERROR"):
                 return
             current_time = self.parent.get_current_time()
-            if Exception:
+            if error:
                 # Extract the traceback from the exception and get the last frame (where the error happened)
                 exc_type, exc_value, exc_tb = sys.exc_info()
                 tb = traceback.extract_tb(exc_tb)[-1]
