@@ -1,13 +1,11 @@
 import subprocess
 import re
 import qrcode
-import platform
 import os
 import PIL
 
 
 def get_wifi_info():
-    system = platform.system()
     ssid = None
     password = None
     security = None

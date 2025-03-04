@@ -2,7 +2,7 @@
 
 ## Description
 
-Generate a QR code for your wifi network.
+Generate a QR code for your wifi network. Requires PIL, qrcode and NetworkManager.
 
 ## Usage
 
