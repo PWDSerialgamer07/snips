@@ -6,7 +6,7 @@ Generate a QR code for your wifi network. Requires PIL, qrcode and NetworkManage
 
 ## Usage
 
-Simply exect the code:
+Simply execute the code:
 
 ```Bash
 python wifi-qr.py
