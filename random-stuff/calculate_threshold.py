@@ -10,6 +10,7 @@ TYPEA_FOLDER = "TypeA"  # Change these
 TYPEB_FOLDER = "TypeB"
 
 
+# Feel free to use your own function
 def calculate_grayscale_variance(image_path) -> float:
     # Convert to grayscale and normalize to [0, 1]
     img = Image.open(image_path).convert("L")  # 'L' mode = grayscale
