@@ -123,7 +123,8 @@ class Logger:
                 file_info = f"(File: {tb.filename}, Line: {tb.lineno}, Function: {tb.name}, Error: {error})"
             else:
                 file_info = ""
-            log(f"[blue]{current_time}[/blue] [red][bold][ERROR][/bold] {message} {file_info}[/red]")
+            self.parent.console.print(
+                f"[blue]{current_time}[/blue] [red][bold][ERROR][/bold] {message} {file_info}[/red]")
             self.parent.log_file.log(message, "ERROR", file_info)
 
         def info(self, message: str) -> None:
@@ -136,7 +137,8 @@ class Logger:
             if not self.parent.should_log("INFO"):
                 return
             current_time = self.parent.get_current_time()
-            log(f"[blue]{current_time}[/blue] [green][bold][INFO][/bold] {message}[/green]")
+            self.parent.console.print(
+                f"[blue]{current_time}[/blue] [green][bold][INFO][/bold] {message}[/green]")
             self.parent.log_file.log(message, "INFO")
 
         def warn(self, message: str) -> None:
@@ -149,7 +151,8 @@ class Logger:
             if not self.parent.should_log("WARN"):
                 return
             current_time = self.parent.get_current_time()
-            log(f"[blue]{current_time}[/blue] [yellow][bold][WARN][/bold] {message}[/yellow]")
+            self.parent.console.print(
+                f"[blue]{current_time}[/blue] [yellow][bold][WARN][/bold] {message}[/yellow]")
             self.parent.log_file.log(message, "WARN")
 
         def debug(self, message: str) -> None:
@@ -162,7 +165,8 @@ class Logger:
             if not self.parent.should_log("DEBUG"):
                 return
             current_time = self.parent.get_current_time()
-            log(f"[blue]{current_time}[/blue] [cyan][bold][DEBUG][/bold] {message}[/cyan]")
+            self.parent.console.print(
+                f"[blue]{current_time}[/blue] [cyan][bold][DEBUG][/bold] {message}[/cyan]")
             self.parent.log_file.log(message, "DEBUG")
 
 
